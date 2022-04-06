@@ -21,6 +21,7 @@ namespace studash_service.Controllers
         }
 
         [HttpPost]
+        [Route("/All")]
         public IEnumerable<Lesson> GetAll(FullScheduleRequest request)
         {
             var context = _contexts[request.University];
