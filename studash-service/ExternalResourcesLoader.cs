@@ -12,7 +12,7 @@ namespace studash_service
         public static Dictionary<string,DatabaseConnectionData> LoadDatabasesData()
         {
             string jsonString = File
-                .ReadAllText("C:/Repository/C#/studash-service/studash-service/databases.json");
+                .ReadAllText("databases.json");
             return JsonSerializer.Deserialize<Dictionary<string,DatabaseConnectionData>>(jsonString);
         }
 
