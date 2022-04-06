@@ -36,7 +36,7 @@ namespace studash_service.Controllers
         }
 
         [HttpPost]
-        [Route("/{date}")]
+        [Route("/[controller]/{date}")]
         public IEnumerable<Lesson> GetOnDate(ScheduleRequest request, DateTime date)
         {
             _logger.Log(LogLevel.Information,$"[{Request.Method}] {Request.Host.Host}{Request.Path.Value} @ {DateTime.UtcNow}");
