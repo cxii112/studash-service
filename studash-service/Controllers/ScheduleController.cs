@@ -111,7 +111,7 @@ namespace studash_service.Controllers
             catch (Exception e)
             {
                 int statusCode = 500;
-                _logger.LogError($"{statusCode} {DateTime.UtcNow} ({Request.Body}) {e.Message}");
+                _logger.LogError($"{statusCode} {DateTime.UtcNow} ({Request.Body}) {e.Message} {e.Data}");
                 return Problem(statusCode: 500, detail: $"Internal error");
             }
         }
