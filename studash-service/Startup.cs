@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using AspNetCore.Yandex.ObjectStorage.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,9 +37,10 @@ namespace studash_service
                                                 options.Location = region;
                                             });
             
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(swaggerOptions =>
                                    {
-                                       c.SwaggerDoc("v1",
+                                       swaggerOptions.EnableAnnotations();
+                                       swaggerOptions.SwaggerDoc("v1",
                                                     new OpenApiInfo { Title = "studash_service", Version = "v1" });
                                    });
         }
