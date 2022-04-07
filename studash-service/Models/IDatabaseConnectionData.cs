@@ -1,6 +1,6 @@
-﻿namespace studash_service.Models
+namespace studash_service.Models
 {
-    public class DatabaseConnectionData : IDatabaseConnectionData
+    public interface IDatabaseConnectionData
     {
         public string Host { get; set; }
         public string Database { get; set; }
