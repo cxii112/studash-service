@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AspNetCore.Yandex.ObjectStorage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using studash_service.Context;
+using studash_service.Models;
 
 namespace studash_service.Controllers
 {
@@ -11,8 +12,9 @@ namespace studash_service.Controllers
     [Route("[controller]")]
     public class ScheduleController : ControllerBase
     {
-        private Dictionary<string, UniversityContext> _contexts;
+        private readonly Dictionary<string, UniversityContext> _contexts;
         private readonly ILogger<ScheduleController> _logger;
+        private YandexStorageService _storage;
 
         public ScheduleController(ILogger<ScheduleController> logger)
         {
@@ -20,7 +22,7 @@ namespace studash_service.Controllers
             _contexts =
                 new Dictionary<string, UniversityContext>
                 {
-                    { "Хогвардс", new UniversityContext("Hogwards") }
+                    { "Хогвардс", new UniversityContext("Hogwards", _storage) }
                 };
         }
 
