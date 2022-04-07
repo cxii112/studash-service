@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace studash_service.Context
+namespace studash_service.Models
 {
     public class Lesson
     {

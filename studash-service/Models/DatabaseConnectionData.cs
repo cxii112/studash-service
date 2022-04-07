@@ -1,4 +1,4 @@
-﻿namespace studash_service.Context
+﻿namespace studash_service.Models
 {
     public class DatabaseConnectionData : IDatabaseConnectionData
     {
