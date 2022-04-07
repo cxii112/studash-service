@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using AspNetCore.Yandex.ObjectStorage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -76,6 +74,7 @@ namespace studash_service.Controllers
         }
 
         [HttpPost]
+        [Route("Year")]
         [SwaggerOperation(Summary = "Запрос на получение отчетных единиц за год",
                           Description = "Запрашивает из базы данных отчетные единицы студента за указанный год")]
         [SwaggerResponse(201, "Возвращает массив с данными об отчетных единицах")]
@@ -121,6 +120,7 @@ namespace studash_service.Controllers
         }
 
         [HttpPost]
+        [Route("Period")]
         [SwaggerOperation(Summary = "Запрос на получение отчетных единиц в периоде",
                           Description = "Запрашивает из базы данных отчетные единицы студента в указанном периоде")]
         [SwaggerResponse(201, "Возвращает массив с данными об отчетных единицах")]
@@ -167,6 +167,7 @@ namespace studash_service.Controllers
         }
 
         [HttpPost]
+        [Route("Subject")]
         [SwaggerOperation(Summary = "Запрос на получение отчетных единиц по предмету одного периода",
                           Description = "Запрашивает из базы данных отчетные единицы студента по одному предмету за указанный период")]
         [SwaggerResponse(201, "Возвращает массив с данными об отчетных единицах")]
@@ -183,7 +184,7 @@ namespace studash_service.Controllers
                                                     point.year == request.Year &&
                                                     point.period == request.Period &&
                                                     point.subject == request.Subject);
-                if (points.Count() == 0)
+                if (!points.Any())
                 {
                     int statusCode = 204;
                     _logger.LogError($"{statusCode} {DateTime.UtcNow}");

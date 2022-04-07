@@ -43,7 +43,7 @@ namespace studash_service.Controllers
                 var schedule = context.schedule.Where(lesson => lesson.group_name == request.GroupName)
                                       .Select(lesson => new LessonExport(lesson))
                                       .ToArray();
-                if (schedule.Count() == 0)
+                if (!schedule.Any())
                 {
                     int statusCode = 204;
                     _logger.LogError($"{statusCode} {DateTime.UtcNow}");
@@ -89,7 +89,7 @@ namespace studash_service.Controllers
                                                             lesson.date == request.Date)
                                       .Select(lesson => new LessonExport(lesson))
                                   .ToArray();
-                if (schedule.Count() == 0)
+                if (!schedule.Any())
                 {
                     int statusCode = 204;
                     _logger.LogError($"{statusCode} {DateTime.UtcNow}");
