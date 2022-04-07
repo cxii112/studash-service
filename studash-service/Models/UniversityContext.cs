@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace studash_service.Models
 {
-    public class UniversityContext : DbContext
+    public abstract class UniversityContext : DbContext
     {
-        private readonly string _databasesFilename = "databases.json";
+        protected readonly string _databasesFilename = "databases.json";
 
         public UniversityContext(string key, YandexStorageService storage)
         {
@@ -20,9 +20,7 @@ namespace studash_service.Models
             
             ConnectionData = connectionsData[key] ?? throw new ArgumentNullException(nameof(connectionsData));
         }
-
-        public DbSet<Lesson> schedule { get; set; }
-        private IDatabaseConnectionData ConnectionData { get; set; }
+        protected IDatabaseConnectionData ConnectionData { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
