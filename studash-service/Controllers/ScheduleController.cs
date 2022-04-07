@@ -41,6 +41,7 @@ namespace studash_service.Controllers
             {
                 context = _contexts[request.University];
                 var schedule = context.schedule.Where(lesson => lesson.group_name == request.GroupName)
+                                      .Select(lesson => new LessonExport(lesson))
                                       .ToArray();
                 if (schedule.Count() == 0)
                 {
@@ -86,6 +87,7 @@ namespace studash_service.Controllers
                 context = _contexts[request.University];
                 var schedule = context.schedule.Where(lesson => lesson.group_name == request.GroupName &&
                                                             lesson.date == request.Date)
+                                      .Select(lesson => new LessonExport(lesson))
                                   .ToArray();
                 if (schedule.Count() == 0)
                 {
