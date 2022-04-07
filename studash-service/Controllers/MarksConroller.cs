@@ -134,7 +134,6 @@ namespace studash_service.Controllers
                 var context = _contexts[request.University];
                 var points = context.marks
                                     .Where(point => point.full_name == request.fullName &&
-                                                    point.year == request.Year &&
                                                     point.period == request.Period);
                 if (!points.Any())
                 {
@@ -181,7 +180,6 @@ namespace studash_service.Controllers
                 var context = _contexts[request.University];
                 var points = context.marks
                                     .Where(point => point.full_name == request.fullName &&
-                                                    point.year == request.Year &&
                                                     point.period == request.Period &&
                                                     point.subject == request.Subject);
                 if (!points.Any())
