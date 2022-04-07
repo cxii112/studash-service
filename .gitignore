@@ -480,3 +480,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+studash-service/.aws/credentials
+studash-service/Properties/launchSettings.json
+studash-service/Properties/launchSettings.json
