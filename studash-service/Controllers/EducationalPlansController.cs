@@ -43,10 +43,10 @@ namespace studash_service.Controllers
             try
             {
                 var context = _contexts[request.University];
-                var plan = context.educationalplans
-                                  .Single(plan => plan.specialitycode == request.SpecialityCode);
-                
-                Stream stream = _storage.GetAsStreamAsync(plan.planreference).Result;
+                var plan = context.educational_plans
+                                  .Single(plan => plan.speciality_code == request.SpecialityCode);
+                var filename = $"educational-plans/{plan.reference}";
+                Stream stream = _storage.GetAsStreamAsync(filename).Result;
                 return Ok(JsonDocument.Parse(stream));
             }
             catch (KeyNotFoundException)

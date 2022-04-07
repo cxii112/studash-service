@@ -6,6 +6,6 @@ namespace studash_service.Models
     public class EducationalPlanContext : UniversityContext
     {
         public EducationalPlanContext(string key, YandexStorageService storage) : base(key, storage) { }
-        public DbSet<EducationalPlan> educationalplans { get; set; }
+        public DbSet<EducationalPlan> educational_plans { get; set; }
     }
 }
