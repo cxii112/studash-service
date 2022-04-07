@@ -16,8 +16,9 @@ namespace studash_service.Controllers
         private readonly ILogger<ScheduleController> _logger;
         private YandexStorageService _storage;
 
-        public ScheduleController(ILogger<ScheduleController> logger)
+        public ScheduleController(ILogger<ScheduleController> logger, YandexStorageService storageService)
         {
+            _storage = storageService;
             _logger = logger;
             _contexts =
                 new Dictionary<string, UniversityContext>

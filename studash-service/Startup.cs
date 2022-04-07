@@ -1,3 +1,5 @@
+using System;
+using AspNetCore.Yandex.ObjectStorage.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +22,19 @@ namespace studash_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            string? bucketName = Environment.GetEnvironmentVariable("BUCKET");
+            string? accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+            string? secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+            string? region = Environment.GetEnvironmentVariable("REGION");
+            services.AddYandexObjectStorage(options =>
+                                            {
+                                                options.BucketName = bucketName;
+                                                options.AccessKey = accessKey;
+                                                options.SecretKey = secretKey;
+                                                options.Location = region;
+                                            });
+            
             services.AddSwaggerGen(c =>
                                    {
                                        c.SwaggerDoc("v1",
