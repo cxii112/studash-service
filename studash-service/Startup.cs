@@ -54,6 +54,11 @@ namespace studash_service
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "studash_service v1"));
             }
+            app.UseCors(x => x
+                             .AllowAnyMethod()
+                             .AllowAnyHeader()
+                             .SetIsOriginAllowed(origin => true) // allow any origin
+                             .AllowCredentials());
 
             app.UseHttpsRedirection();
 
