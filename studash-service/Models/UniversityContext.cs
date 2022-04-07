@@ -9,12 +9,14 @@ namespace studash_service.Models
 {
     public class UniversityContext : DbContext
     {
+        private readonly string _databasesFilename = "databases.json";
+
         public UniversityContext(string key, YandexStorageService storage)
         {
-            var fileStreamReader = new StreamReader(
-                                                    storage.GetAsStreamAsync("databases.json").Result);
-            var connectionsData = JsonSerializer.Deserialize<Dictionary<string, DatabaseConnectionData>>(
-             fileStreamReader.ReadToEnd());
+            var stream = storage.GetAsStreamAsync(_databasesFilename).Result;
+            var fileStreamReader = new StreamReader(stream);
+            var json = fileStreamReader.ReadToEnd();
+            var connectionsData = JsonSerializer.Deserialize<Dictionary<string, DatabaseConnectionData>>(json);
             
             ConnectionData = connectionsData[key] ?? throw new ArgumentNullException(nameof(connectionsData));
         }
